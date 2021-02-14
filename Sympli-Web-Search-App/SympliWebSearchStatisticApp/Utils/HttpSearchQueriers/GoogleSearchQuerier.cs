@@ -30,8 +30,6 @@ namespace SympliWebSearchStatisticApp.Utils.HttpSearchQueriers
 
 			var result = await response.Content.ReadAsStringAsync();
 
-
-
 			return await Task.FromResult(result);
 		}
 	}
