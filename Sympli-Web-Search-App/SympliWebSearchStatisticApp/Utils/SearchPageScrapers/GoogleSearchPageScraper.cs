@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 using HtmlAgilityPack;
 
@@ -14,6 +12,8 @@ namespace SympliWebSearchStatisticApp.Utils.SearchPageScrapers
 		{
 			this._htmlDocumentReader = new HtmlDocument();
 		}
+
+		public string Name { get =>  "GoogleSearchPageScrapper"; }
 
 		public int?[] GetRanksByKeyWordSearch(string keyWord, string htmlContent)
 		{

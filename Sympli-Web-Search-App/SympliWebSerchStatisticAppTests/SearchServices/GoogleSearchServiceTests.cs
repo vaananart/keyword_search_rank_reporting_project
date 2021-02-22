@@ -11,7 +11,7 @@ namespace SympliWebSerchStatisticAppTests.SearchServices
 	public class GoogleSearchServiceTests
 	{
 		[Fact]
-		public async void When_querying_google_search_engine_with_URL_Test()
+		public void When_querying_google_search_engine_with_URL_Test()
 		{
 			ISearchService service = new SearchServiceFactory(new HttpQuerierFactory(), new SearchPageScraperFactory())
 										.GetService("Google");

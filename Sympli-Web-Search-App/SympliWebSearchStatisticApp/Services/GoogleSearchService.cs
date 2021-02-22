@@ -21,7 +21,6 @@ namespace SympliWebSearchStatisticApp.Services
 			this.CachedResult = new List<CachedRankModel>();
 		}
 
-
 		public IList<CachedRankModel> CachedResult { get; set; }
 
 		public async Task<int?[]> RetrieveRanksByKeywordSearchAsync(string proxySearchparam, string rankKeywordSearch)

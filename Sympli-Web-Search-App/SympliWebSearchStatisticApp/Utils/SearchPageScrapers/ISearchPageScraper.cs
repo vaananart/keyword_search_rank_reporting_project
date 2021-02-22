@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace SympliWebSearchStatisticApp.Utils.SearchPageScrapers
+﻿namespace SympliWebSearchStatisticApp.Utils.SearchPageScrapers
 {
 	public interface ISearchPageScraper
 	{
+		string Name { get; }
 		int?[] GetRanksByKeyWordSearch(string keyWord, string htmlContent);
 	}
 }
