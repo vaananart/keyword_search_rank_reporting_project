@@ -8,9 +8,9 @@ namespace SympliWebSearchStatisticApp.Utils.HttpSearchQueriers
 	public class GoogleSearchQuerier : IHttpQuerier
 	{
 		private readonly HttpClient _httpClient;
-		public GoogleSearchQuerier()
+		public GoogleSearchQuerier(HttpClient httpClient)
 		{
-			this._httpClient = new HttpClient();
+			this._httpClient = httpClient;
 		}
 
 		public async Task<string> QueryBySearchKeywordAsync(string search)

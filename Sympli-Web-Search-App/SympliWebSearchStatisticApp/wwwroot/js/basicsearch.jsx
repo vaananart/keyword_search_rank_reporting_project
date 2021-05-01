@@ -9,7 +9,7 @@ class SearchReportBox extends React.Component {
 
 	loadSearchFromServer() {
 		const xhr = new XMLHttpRequest();
-		xhr.open('get', "/search?search=e-settlement&rank=www.sympli.com&searchengine=google", true);
+		xhr.open('get', "/search/google?search=e-settlement&rank=www.sympli.com", true);
 		xhr.onload = (() => {
 			if (xhr.status != 200) {
 				alert(xhr.responseText);

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,14 +15,14 @@ namespace SympliWebSearchStatisticApp.Services
 		private readonly IHttpQuerier _httpQuerier;
 		private readonly ISearchPageScraper _searchPageScraper;
 
-		public GoogleSearchService(IHttpQuerierFactory httpQuerierFactory, ISearchPageScraperFactory searchPageScraperFactory)
+		public GoogleSearchService(IHttpQuerier httpQuerier, ISearchPageScraper searchPageScraper)
 		{
-			this._httpQuerier = httpQuerierFactory.GetQuerierBySearchEngineName("Google");
-			this._searchPageScraper = searchPageScraperFactory.GetScraper("Google");
-			this.CachedResult = new List<CachedRankModel>();
+			this._httpQuerier = httpQuerier;
+			this._searchPageScraper = searchPageScraper;
+			this.CachedResult = new ConcurrentBag<CachedRankModel>();
 		}
 
-		public IList<CachedRankModel> CachedResult { get; set; }
+		public ConcurrentBag<CachedRankModel> CachedResult { get; set; }
 
 		public async Task<int?[]> RetrieveRanksByKeywordSearchAsync(string proxySearchparam, string rankKeywordSearch)
 		{
@@ -66,6 +67,8 @@ namespace SympliWebSearchStatisticApp.Services
 
 		private CachedRankModel CacheMatchedValue(string proxySearchparam, string rankKeywordSearch)
 		{
+
+			
 			var matchedElement = CachedResult
 								.Where(x=>x.EngineName == "google" 
 										&& x.KeyWordSearch == proxySearchparam 

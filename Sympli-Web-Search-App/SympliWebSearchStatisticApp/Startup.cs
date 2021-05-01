@@ -32,6 +32,7 @@ namespace SympliWebSearchStatisticApp
 			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 			services.AddSingleton<ISearchPageScraperFactory, SearchPageScraperFactory>();
+			services.AddHttpClient();
 			services.AddSingleton<IHttpQuerierFactory, HttpQuerierFactory>();
 			services.AddSingleton<ISearchServiceFactory, SearchServiceFactory>();
 

@@ -9,6 +9,8 @@ using Microsoft.Extensions.Logging;
 
 using SympliWebSearchStatisticApp.Models;
 using SympliWebSearchStatisticApp.Services;
+using SympliWebSearchStatisticApp.Utils.Converters;
+using SympliWebSearchStatisticApp.Utils.Enums;
 
 namespace SympliWebSearchStatisticApp.Controllers
 {
@@ -23,10 +25,12 @@ namespace SympliWebSearchStatisticApp.Controllers
 			this._searchFactory = searchFactory;
 		}
 
-		[Route("search")]
+		[Route("search/{searchengine?}")]
 		[HttpGet]
 		public async Task<IActionResult> SearchFirstHunderdEntries(string search, string rank, string searchengine = null )
-		{ 
+		{
+			var engineType = Converter.Convert<EngineEnum>(searchengine);
+			
 			var searchService = this._searchFactory.GetService(searchengine);
 			int?[] result;
 			try

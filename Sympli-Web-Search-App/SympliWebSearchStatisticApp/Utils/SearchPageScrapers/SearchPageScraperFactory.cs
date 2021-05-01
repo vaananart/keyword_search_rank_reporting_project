@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
+using SympliWebSearchStatisticApp.Utils.Enums;
+using SympliWebSearchStatisticApp.Utils.StringSupport;
+
 namespace SympliWebSearchStatisticApp.Utils.SearchPageScrapers
 {
 	public class SearchPageScraperFactory : ISearchPageScraperFactory
@@ -14,9 +17,7 @@ namespace SympliWebSearchStatisticApp.Utils.SearchPageScrapers
 
 		public ISearchPageScraper GetScraper(string searchEngineName)
 		{
-			var matchedResult = this._pageScraperLookUp
-									.Where(x=>x.Key == searchEngineName.ToLower().Normalize())
-									.FirstOrDefault().Value;
+			var matchedResult = this._pageScraperLookUp[searchEngineName.ToLower().Normalize()];
 
 			if (matchedResult != null)
 				return matchedResult;
@@ -24,12 +25,17 @@ namespace SympliWebSearchStatisticApp.Utils.SearchPageScrapers
 			switch (searchEngineName.ToLower().Normalize())
 			{
 				case "google":
-					this._pageScraperLookUp["google"] = new GoogleSearchPageScraper();
-					return this._pageScraperLookUp["google"];
+					this._pageScraperLookUp[EngineEnum.Google.ToNormalisedString()] = new GoogleSearchPageScraper();
+					return this._pageScraperLookUp[EngineEnum.Google.ToNormalisedString()];
 				default:
 					return null;
 			}
 
+		}
+
+		public ISearchPageScraper GetScraper(EngineEnum searchEngine)
+		{
+			throw new System.NotImplementedException();
 		}
 	}
 }
